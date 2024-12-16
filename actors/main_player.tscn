@@ -199,6 +199,7 @@ animations = [{
 script = ExtResource("1_eol1g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(141, -1)
 shape = SubResource("CircleShape2D_t1ne1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -207,6 +208,10 @@ sprite_frames = SubResource("SpriteFrames_egd5f")
 animation = &"left_walk"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(141, 1)
 zoom = Vector2(2, 2)
-limit_left = 0
+limit_left = -100
+limit_top = -100
+limit_right = 1100
+limit_bottom = 650
 editor_draw_limits = true

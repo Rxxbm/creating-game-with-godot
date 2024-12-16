@@ -1,0 +1,154 @@
+[gd_scene load_steps=3 format=3 uid="uid://y56dsmujtbcp"]
+
+[ext_resource type="Script" path="res://controllers/game_controller.gd" id="1_cwoec"]
+[ext_resource type="Script" path="res://scenes/question_timer.gd" id="2_iaph2"]
+
+[node name="Main" type="CanvasLayer"]
+script = ExtResource("1_cwoec")
+color_right = Color(0, 0.500788, 0, 1)
+color_wrong = Color(0.877346, 3.87453e-06, 1.2514e-06, 1)
+
+[node name="Content" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 729.0
+offset_bottom = 1268.0
+
+[node name="QuestionInfo" type="VBoxContainer" parent="Content"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -359.0
+offset_right = 359.0
+offset_bottom = 440.0
+grow_horizontal = 2
+
+[node name="QuestionTimer" type="Label" parent="Content/QuestionInfo"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 40
+text = "10"
+horizontal_alignment = 1
+script = ExtResource("2_iaph2")
+
+[node name="QuestionText" type="Label" parent="Content/QuestionInfo"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 40
+text = "Pergunta"
+horizontal_alignment = 1
+
+[node name="ImageHolder" type="Panel" parent="Content/QuestionInfo"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="QuestionImage" type="TextureRect" parent="Content/QuestionInfo/ImageHolder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuestionHolder" type="VBoxContainer" parent="Content"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 571.0
+offset_right = 701.0
+offset_bottom = 1273.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ButtonO1" type="Button" parent="Content/QuestionHolder"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="ButtonO2" type="Button" parent="Content/QuestionHolder"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="ButtonO3" type="Button" parent="Content/QuestionHolder"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="ButtonO4" type="Button" parent="Content/QuestionHolder"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="GameOver" type="ColorRect" parent="Content"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.374139, 0.374139, 0.374139, 1)
+
+[node name="Title" type="Label" parent="Content/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -234.5
+offset_top = 201.0
+offset_right = 233.5
+offset_bottom = 360.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "Acertos "
+
+[node name="Score" type="Label" parent="Content/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -234.0
+offset_top = -79.5
+offset_right = 234.0
+offset_bottom = 79.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 120
+text = "0/0"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Content/GameOver"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 907.0
+offset_right = 682.0
+offset_bottom = 1039.0
+theme_override_font_sizes/font_size = 60
+text = "Jogar Novamente"
+
+[node name="quit" type="Button" parent="Content/GameOver"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 1063.0
+offset_right = 682.0
+offset_bottom = 1195.0
+theme_override_font_sizes/font_size = 60
+text = "Sair"
+
+[node name="Timer" type="Timer" parent="Content"]
+wait_time = 25.0
+
+[connection signal="pressed" from="Content/GameOver/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Content/GameOver/quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="Content/Timer" to="." method="_on_timer_timeout"]
